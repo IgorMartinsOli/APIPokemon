@@ -1,0 +1,7 @@
+com\mycompany\apipokemon\client.class
+com\mycompany\apipokemon\utils\Model.class
+com\mycompany\apipokemon\ws\RestApplication.class
+com\mycompany\apipokemon\service\AbstractService.class
+com\mycompany\apipokemon\Model\Pokemon.class
+com\mycompany\apipokemon\service\PokemonService.class
+com\mycompany\apipokemon\ws\PokemonResource.class

@@ -21,7 +21,9 @@ public class client {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("pokemonAPI-PU");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         
+        entityManager.getTransaction().begin();
         Pokemon pokemon = entityManager.find(Pokemon.class, 1);
+        entityManager.getTransaction().commit();
         System.out.println(pokemon.getName());
         
         entityManager.close();

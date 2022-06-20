@@ -9,6 +9,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -27,12 +28,14 @@ public class PokemonResource{
     @Inject
     private PokemonService pokemonService;
 
+    /*•	Metodo GET "pokemons": Retorna todos os pokemons;*/
     @GET
     @Path("pokemons")
     public List<Pokemon> listarPokemons() {
         return pokemonService.findAll();
     }
 
+    /*•	Método GET "pokemon/NUMERO_DO_POKEMON" que deve retornar os dados do pokemon com o número passado, campo "num" no arquivo pokedex.json, em formato JSON.*/
     @GET
     @Path("buscar/{codigo}")
     public Pokemon listarPokemon(@PathParam("codigo") Long codigo) {
@@ -52,6 +55,7 @@ public class PokemonResource{
         }
     }
     
+    /*•	Método PUT "pokemon/NUMERO_DO_POKEMON" atualiza o pokemon com o numero passado usando os dados do pokemon informados no body da requisição;*/
     @PUT
     @Path("update")
     public Response update(Pokemon pokemon){
@@ -59,6 +63,18 @@ public class PokemonResource{
             pokemonService.update(pokemon);
             return Response.ok().build();
         } catch(Exception ex){
+            return Response.status(Response.Status.BAD_REQUEST).entity("Não foi possivel fazer o update").build();
+        }
+    }
+    
+    /*•	Metodo DELETE "pokemon/NUMERO_DO_POKEMON" exclui o pokemon que possui o numero informado;*/
+    @DELETE
+    @Path("delete/{codigo}")
+    public Response delete(Pokemon pokemon){
+        try{
+            pokemonService.remove(pokemon);
+            return Response.ok().build();
+        }catch(Exception ex){
             return Response.status(Response.Status.BAD_REQUEST).entity("Não foi possivel fazer o update").build();
         }
     }
