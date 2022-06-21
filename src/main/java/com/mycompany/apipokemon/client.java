@@ -13,10 +13,6 @@ import javax.persistence.Persistence;
  * @author igor_
  */
 public class client {
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("pokemonAPI-PU");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
